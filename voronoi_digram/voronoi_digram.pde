@@ -2,7 +2,7 @@ Balls balls;
 void setup(){
 size(600, 600);
 colorMode(HSB, 100);
-balls = new Balls(10, 20);
+balls = new BallSet(10, 20);
 }
 
 void draw(){

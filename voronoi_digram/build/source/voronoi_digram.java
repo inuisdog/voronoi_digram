@@ -27,53 +27,50 @@ public void draw(){
   balls.draw();
 }
 class Ball{
-  float x;
-  float y;
-  float vx;
-  float vy;
+  PVector position;
+  PVector velocity;
+  PVector impluse;
   float radius;
   int ballColor;
   Ball(float r){
-    x = random(width);
-    y = random(height);
-    vx = random(0.5f, 5);
-    vy = random(0.5f, 5);
+    position = new PVector(random(width), random(height));
+    velocity = new PVector(random(0.5f, 3.0f), random(0.5f, 3.0f));
+    impluse = new PVector(1, 1);
     radius = r;
     ballColor = color((int)random(101), 100, 100);
       }
 
   public void update(){
     //x update
-    float nextX = x + vx;
+    float nextX = position.x + velocity.x;
     if(nextX <= 0){
-      vx = -vx;
-      x = abs(vx);
+      velocity.x = -velocity.x;
+      position.x = abs(velocity.x);
     }
     else if(nextX >= width){
-      vx = -vx;
-      x = width - abs(vx);
+      velocity.x = -velocity.x;
+      position.x = width - abs(velocity.x);
     }
     else
-    x = nextX;
+    position.x = nextX;
     //y update
-    float nextY = y + vy;
+    float nextY = position.y + velocity.y;
     if(nextY <= 0){
-      vy = -vy;
-      y = abs(vy);
+      velocity.y = -velocity.y;
+      position.y = abs(velocity.y);
     }
     else if(nextY >= height){
-      vy = -vy;
-      y = height - abs(vy);
+      velocity.y = -velocity.y;
+      position.y = height - abs(velocity.y);
     }
     else
-    y = nextY;
-
+    position.y = nextY;
   }
 
   public void draw(){
     noStroke();
     fill(ballColor);
-    ellipse(x, y, radius, radius);
+    ellipse(position.x, position.y, radius, radius);
   }
 }
 
